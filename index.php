@@ -1,32 +1,36 @@
+<?php
+session_start();
+if (isset($_SESSION['usuario'])) {
+    header('Location: gestor.php');
+    exit();
+}
+?>
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galeria de imagenes</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>LOGIN</title>
+    <link rel="stylesheet" href="resources/styles.css">
+    <script src="resources/index.js"></script>
 </head>
+
 <body>
-    <h2>Subir Imagen</h2>
-    <form action="app/upload.php" method="post" enctype="multipart/form-data">
-        <input type="file" name="image" required>
-        <input type="submit" value="Subir Imagen">
-    </form>
+    <div class="contenedor">
+        <form id="form">
+            <label for="">Usuario</label>
+            <input type="text" name="user">
 
-    <h2>Galería</h2>
-    <div class="gallery">
-        <?php
-        $directory = 'storage/uploads/';
-        $images = glob($directory . "*.{jpg,jpeg,png,gif}", GLOB_BRACE);
-
-        if(count($images) > 0){
-            foreach($images as $image){
-                echo "<img src='$image' alt='' />";
-            }
-        } else {
-            echo "<p>No hay imágenes disponibles.</p>";
-        }
-        ?>
+            <label for="">Contraseña</label>
+            <input type="text" name="pass">
+            <input type="submit" value="Ingresar">
+        </form>
+        <div class="options">
+            <a href="#">click para crear usuario</a>
+            <a href="#">click para eliminar usuario</a>
+        </div>
     </div>
 </body>
+
 </html>
